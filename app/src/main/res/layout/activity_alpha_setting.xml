@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cyanBackground"
+    tools:context="com.ev.gone.fubiz.AlphaSettingActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/relative_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+
+        <Button
+            android:id="@+id/backto_alpha_main"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/backarrow" />
+
+    </RelativeLayout>
+
+
+    <GridLayout
+        android:id="@+id/grid_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relative_back"
+        android:layout_marginTop="10dp"
+        android:columnCount="2"
+        android:rowCount="2">
+
+
+        <RelativeLayout
+            android:id="@+id/mobile_list"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:gravity="center">
+
+
+            <LinearLayout
+                android:id="@+id/alpha_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/alpha_icon_setting" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/alphawaves"
+                    android:textColor="@color/white"
+                    android:textSize="40px" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/volume_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/alpha_setting"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/volume_icon_setting" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/oceanwaves"
+                    android:textColor="@color/white"
+                    android:textSize="40px" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/yanging_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/volume_setting"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/yin_icon_setting" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/timecountdown"
+                    android:textColor="@color/white"
+                    android:textSize="40px" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/yanging_setting"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@mipmap/budhist_icon_setting" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/calmingvisualization"
+                    android:textColor="@color/white"
+                    android:textSize="40px" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_toRightOf="@+id/mobile_list"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:background="@mipmap/circle_setting_model"
+                    android:scaleType="center" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </GridLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp">
+
+        <ListView
+            android:id="@+id/listsong"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:alpha="0.8"
+            android:divider="@color/cyanBackground"
+            android:dividerHeight="0dp"
+            android:scrollbars="none">
+
+        </ListView>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

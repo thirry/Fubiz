@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.ev.gone.fubiz.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hitomi.cmlibrary.CircleMenu
+            android:id="@+id/circle_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            />
+
+        <!--<Button-->
+            <!--android:id="@+id/circle_menur"-->
+            <!--android:layout_width="130dp"-->
+            <!--android:layout_height="130dp"-->
+            <!--android:background="@mipmap/wavebnt" />-->
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
