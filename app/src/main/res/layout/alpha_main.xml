@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:alpha="0.7"
     android:background="@drawable/backgroundcyan"
-    tools:context="com.ev.gone.fubiz.AlphaActivity">
+    tools:context="com.ev.gone.fubiz.Views.AlphaActivity">
 
 
     <LinearLayout
@@ -84,10 +84,10 @@
 
 
             <Button
+                android:id="@+id/alpha_ic"
                 android:layout_width="85dp"
                 android:layout_height="85dp"
                 android:background="@mipmap/alphaic"
-
                 />
 
 

@@ -1,22 +1,17 @@
-package com.ev.gone.fubiz;
+package com.ev.gone.fubiz.Views;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.MediaPlayer;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Size;
 import android.view.View;
-import android.widget.Button;
-import android.widget.MediaController;
 import android.widget.Toast;
 
+import com.ev.gone.fubiz.R;
 import com.hitomi.cmlibrary.CircleMenu;
 import com.hitomi.cmlibrary.OnMenuSelectedListener;
-import com.hitomi.cmlibrary.OnMenuStatusChangeListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     CircleMenu circleMenu;
     CircleMenu circleMenuSe;

@@ -1,17 +1,14 @@
-package com.ev.gone.fubiz;
+package com.ev.gone.fubiz.Views;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.hitomi.cmlibrary.OnMenuSelectedListener;
-
-import java.util.List;
+import com.ev.gone.fubiz.Manager.ListViewAdapter;
+import com.ev.gone.fubiz.R;
 
 public class AlphaSettingActivity extends AppCompatActivity {
 

@@ -7,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.ev.gone.fubiz.Manager.ListViewAdapter;
+
 /**
  * Created by gone on 2/27/18.
  */

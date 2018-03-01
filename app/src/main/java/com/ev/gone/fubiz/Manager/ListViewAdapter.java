@@ -1,4 +1,4 @@
-package com.ev.gone.fubiz;
+package com.ev.gone.fubiz.Manager;
 
 /**
  * Created by gone on 2/27/18.
@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.ev.gone.fubiz.R;
 
 public class ListViewAdapter extends ArrayAdapter<String> {
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.ev.gone.fubiz.Rotate"
+    tools:context="com.ev.gone.fubiz.Manager.Rotate"
     android:background="@color/white">
 
     <!--<LinearLayout-->
