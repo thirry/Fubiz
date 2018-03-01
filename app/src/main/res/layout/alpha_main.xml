@@ -98,9 +98,10 @@
                 android:background="@drawable/backgroundcyan" />
 
             <Button
+                android:id="@+id/budhist_ic"
                 android:layout_width="85dp"
                 android:layout_height="85dp"
-                android:background="@mipmap/budhistic" />
+                android:background="@mipmap/budhist" />
 
         </LinearLayout>
 

@@ -27,6 +27,13 @@ public class AlphaActivity extends AppCompatActivity {
     boolean isOcean_rd = true;
 
 
+    Button budhist_ic;
+    boolean isPlay_piano = false;
+    boolean isPiano = false;
+    boolean isPiano_nd = true;
+    boolean isPiano_rd = true;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,9 +81,16 @@ public class AlphaActivity extends AppCompatActivity {
 
         //animate fo button
         alpha_ic = (Button) findViewById(R.id.alpha_ic);
+
         alpha_ic.setOnClickListener(alphaTogglePlayButton);
         volume_ocean = (Button) findViewById(R.id.ocean_volume);
         volume_ocean.setOnClickListener(oceanTogglePlayButton);
+
+
+
+        budhist_ic = (Button) findViewById(R.id.budhist_ic);
+        budhist_ic.setOnClickListener(pianoTogglePlayButton);
+
 
 //        alpha_ic.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -108,6 +122,48 @@ public class AlphaActivity extends AppCompatActivity {
 
     };
 
+    View.OnClickListener pianoTogglePlayButton = new View.OnClickListener() {
+
+        View a;
+
+        @Override
+        public void onClick(View v) {
+
+
+            if (isPiano && isPiano_nd && isPiano_rd) {
+                v.setBackgroundResource(R.mipmap.volume_piano_max);
+
+
+            } else if (!isPiano && isPiano_nd && isPiano_rd) {
+                v.setBackgroundResource(R.mipmap.volume_piano_low);
+                isPiano_nd = !isPiano_nd;
+
+            } else if (isPiano && !isPiano_nd && isPiano_rd) {
+                v.setBackgroundResource(R.mipmap.volume_piano_middle);
+//                isOcean_nd = isOcean_nd;
+                isPiano = !isPiano;
+                isPiano_rd = !isPiano_rd;
+
+            } else if (isPiano && !isPiano_nd && !isPiano_rd) {
+                v.setBackgroundResource(R.mipmap.volume_piano_max);
+                isPiano_nd = !isPiano_nd;
+//                isOcean_rd =!isOcean_rd;
+            } else if (!isPiano && isPiano_nd && !isPiano_rd) {
+                v.setBackgroundResource(R.mipmap.budhist);
+                isPiano_rd = !isPiano_rd;
+
+            } else if (!isPiano && isPiano_nd && !isPiano_rd) {
+                v.setBackgroundResource(R.mipmap.volume_piano_low);
+            }
+
+
+            isPiano = !isPiano;
+
+        }
+
+    };
+
+
 
     View.OnClickListener oceanTogglePlayButton = new View.OnClickListener() {
 
@@ -135,7 +191,7 @@ public class AlphaActivity extends AppCompatActivity {
                 v.setBackgroundResource(R.mipmap.volume_ocean_max);
                 isOcean_nd = !isOcean_nd;
 //                isOcean_rd =!isOcean_rd;
-            } else if (isOcean && isOcean_nd && !isOcean_rd) {
+            } else if (!isOcean && isOcean_nd && !isOcean_rd) {
                 v.setBackgroundResource(R.mipmap.volume_ocean_mute);
                 isOcean_rd = !isOcean_rd;
 
