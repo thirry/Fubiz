@@ -1,6 +1,7 @@
 package com.ev.gone.fubiz.Views;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -87,9 +88,21 @@ public class AlphaActivity extends AppCompatActivity {
         volume_ocean.setOnClickListener(oceanTogglePlayButton);
 
 
-
         budhist_ic = (Button) findViewById(R.id.budhist_ic);
         budhist_ic.setOnClickListener(pianoTogglePlayButton);
+
+        final MediaPlayer slideSound = MediaPlayer.create(this, R.raw.clairdelune);
+
+//        Button slider = (Button) findViewById(R.id.circle_menur);
+//
+//        slider.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                slideSound.start();
+//            }
+//
+//        });
 
 
 //        alpha_ic.setOnClickListener(new View.OnClickListener() {
@@ -126,13 +139,15 @@ public class AlphaActivity extends AppCompatActivity {
 
         View a;
 
+//        final MediaPlayer slideSound = MediaPlayer.create(this, R.raw.clairdelune);
+
         @Override
         public void onClick(View v) {
 
 
+
             if (isPiano && isPiano_nd && isPiano_rd) {
                 v.setBackgroundResource(R.mipmap.volume_piano_max);
-
 
             } else if (!isPiano && isPiano_nd && isPiano_rd) {
                 v.setBackgroundResource(R.mipmap.volume_piano_low);
@@ -162,7 +177,6 @@ public class AlphaActivity extends AppCompatActivity {
         }
 
     };
-
 
 
     View.OnClickListener oceanTogglePlayButton = new View.OnClickListener() {

@@ -5,6 +5,7 @@ package com.ev.gone.fubiz.Manager;
  */
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class ListViewAdapter extends ArrayAdapter<String> {
     private final Activity context;
     private final String[] content;
     private final Integer[] imgid;
+    TextView tvContent;
 
     public ListViewAdapter(Activity context, String[] content, Integer[] imgid) {
         super(context, R.layout.inflate_list_view, content);
@@ -32,8 +34,12 @@ public class ListViewAdapter extends ArrayAdapter<String> {
     public View getView(int position, View view, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView = inflater.inflate(R.layout.inflate_list_view, null, true);
+        tvContent = (TextView) rowView.findViewById(R.id.tv_content);
 
-        TextView tvContent = (TextView) rowView.findViewById(R.id.tvContent);
+
+        Typeface customfont = Typeface.createFromAsset(getContext().getAssets(), "font/aqua.ttf");
+        tvContent.setTypeface(customfont);
+
         ImageView ivImage = (ImageView) rowView.findViewById(R.id.ivImage);
 
         tvContent.setText(content[position]);
