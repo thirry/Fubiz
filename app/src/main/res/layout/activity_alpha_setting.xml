@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
 
-
         <Button
             android:id="@+id/backto_alpha_main"
             android:layout_width="20dp"
@@ -32,7 +31,6 @@
         android:layout_marginTop="10dp"
         android:columnCount="2"
         android:rowCount="2">
-
 
         <RelativeLayout
             android:id="@+id/mobile_list"
@@ -57,7 +55,6 @@
                     android:background="@mipmap/alpha_icon_setting" />
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -65,7 +62,6 @@
                     android:text="@string/alphawaves"
                     android:textColor="@color/white"
                     android:textSize="45px" />
-
 
             </LinearLayout>
 
@@ -84,7 +80,6 @@
                     android:background="@mipmap/volume_icon_setting" />
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -92,7 +87,6 @@
                     android:text="@string/oceanwaves"
                     android:textColor="@color/white"
                     android:textSize="45px" />
-
 
             </LinearLayout>
 
@@ -111,7 +105,6 @@
                     android:background="@mipmap/yin_icon_setting" />
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -119,10 +112,7 @@
                     android:text="@string/timecountdown"
                     android:textColor="@color/white"
                     android:textSize="45px" />
-
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -138,7 +128,6 @@
                     android:background="@mipmap/budhist_icon_setting" />
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -151,7 +140,6 @@
 
 
         <RelativeLayout
-
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_columnWeight="1"

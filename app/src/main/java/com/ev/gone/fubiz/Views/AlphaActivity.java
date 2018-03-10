@@ -1,6 +1,8 @@
 package com.ev.gone.fubiz.Views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +35,8 @@ public class AlphaActivity extends AppCompatActivity {
     boolean isPiano = false;
     boolean isPiano_nd = true;
     boolean isPiano_rd = true;
+
+    int maxVolume = 50;
 
 
     @Override
@@ -80,18 +84,103 @@ public class AlphaActivity extends AppCompatActivity {
 
         });
 
+
+        final MediaPlayer mPlayer = MediaPlayer.create(this, R.raw.clairdelune);
+
+
+
+
         //animate fo button
         alpha_ic = (Button) findViewById(R.id.alpha_ic);
 
-        alpha_ic.setOnClickListener(alphaTogglePlayButton);
+        alpha_ic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (isPlay) {
+                    v.setBackgroundResource(R.mipmap.alphaic);
+                } else {
+                    v.setBackgroundResource(R.mipmap.alphaic_active);
+                }
+
+                isPlay = !isPlay; // reverse
+
+            }
+        });
+
+
+
+
         volume_ocean = (Button) findViewById(R.id.ocean_volume);
         volume_ocean.setOnClickListener(oceanTogglePlayButton);
 
 
-        budhist_ic = (Button) findViewById(R.id.budhist_ic);
-        budhist_ic.setOnClickListener(pianoTogglePlayButton);
 
-        final MediaPlayer slideSound = MediaPlayer.create(this, R.raw.clairdelune);
+        budhist_ic = (Button) findViewById(R.id.budhist_ic);
+//        budhist_ic.setOnClickListener(pianoTogglePlayButton)
+
+
+        budhist_ic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (isPiano && isPiano_nd && isPiano_rd) {
+                    v.setBackgroundResource(R.mipmap.volume_piano_max);
+
+//                v.playSoundEffect();
+
+                } else if (!isPiano && isPiano_nd && isPiano_rd) {
+
+                    mPlayer.start();
+                    mPlayer.setVolume((float) 0.2, (float) 0.2);
+
+                    v.setBackgroundResource(R.mipmap.volume_piano_low);
+                    isPiano_nd = !isPiano_nd;
+
+
+                } else if (isPiano && !isPiano_nd && isPiano_rd) {
+
+                    mPlayer.start();
+                    mPlayer.setVolume((float) 0.5, (float) 0.5);
+
+                    v.setBackgroundResource(R.mipmap.volume_piano_middle);
+//                isOcean_nd = isOcean_nd;
+                    isPiano = !isPiano;
+                    isPiano_rd = !isPiano_rd;
+
+                    mPlayer.start();
+                    mPlayer.setVolume((float) 0.7, (float) 0.7);
+
+                } else if (isPiano && !isPiano_nd && !isPiano_rd) {
+                    v.setBackgroundResource(R.mipmap.volume_piano_max);
+                    isPiano_nd = !isPiano_nd;
+
+                    mPlayer.start();
+                    mPlayer.setVolume((float) 1.0, (float) 1.0);
+
+
+//                isOcean_rd =!isOcean_rd;
+                } else if (!isPiano && isPiano_nd && !isPiano_rd) {
+                    v.setBackgroundResource(R.mipmap.budhist);
+                    isPiano_rd = !isPiano_rd;
+
+                    mPlayer.pause();
+
+                } else if (!isPiano && isPiano_nd && !isPiano_rd) {
+                    mPlayer.start();
+                    v.setBackgroundResource(R.mipmap.volume_piano_low);
+
+                    mPlayer.start();
+                    mPlayer.setVolume((float) 0.2, (float) 0.2);
+                }
+
+
+                isPiano = !isPiano;
+
+
+            }
+        });
+
 
 //        Button slider = (Button) findViewById(R.id.circle_menur);
 //
@@ -119,6 +208,7 @@ public class AlphaActivity extends AppCompatActivity {
 
     }
 
+
     View.OnClickListener alphaTogglePlayButton = new View.OnClickListener() {
 
         @Override
@@ -139,19 +229,27 @@ public class AlphaActivity extends AppCompatActivity {
 
         View a;
 
-//        final MediaPlayer slideSound = MediaPlayer.create(this, R.raw.clairdelune);
+//      final MediaPlayer slideSound = MediaPlayer.create(this, R.raw.clairdelune);
+
+//        MediaPlayer mPlayer = MediaPlayer.create(null, R.raw.clairdelune);
+
+//       final MediaPlayer mPlayer = MediaPlayer.create(this, R.raw.clairdelune);
 
         @Override
         public void onClick(View v) {
 
 
-
             if (isPiano && isPiano_nd && isPiano_rd) {
                 v.setBackgroundResource(R.mipmap.volume_piano_max);
+
+//                v.playSoundEffect();
 
             } else if (!isPiano && isPiano_nd && isPiano_rd) {
                 v.setBackgroundResource(R.mipmap.volume_piano_low);
                 isPiano_nd = !isPiano_nd;
+
+                //        mPlayer.start();
+
 
             } else if (isPiano && !isPiano_nd && isPiano_rd) {
                 v.setBackgroundResource(R.mipmap.volume_piano_middle);
