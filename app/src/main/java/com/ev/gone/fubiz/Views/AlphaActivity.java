@@ -1,8 +1,6 @@
 package com.ev.gone.fubiz.Views;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -42,7 +40,7 @@ public class AlphaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.alpha_main);
+        setContentView(R.layout.activity_alpha_main);
 
         btn_backtohome = (Button) findViewById(R.id.backtohome);
         btn_backtohome.setOnClickListener(new View.OnClickListener() {
