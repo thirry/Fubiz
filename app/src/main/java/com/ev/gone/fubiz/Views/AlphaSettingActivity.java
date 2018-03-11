@@ -14,28 +14,29 @@ public class AlphaSettingActivity extends AppCompatActivity {
 
 
     String songs[] = new String[]{"Requiem", "The Magic Flute", "Piano Sonata No. 11", "Symphony No. 40", "Don Giovanni", "Ave verum corpus"};
+    String settimes[] = new String[]{"5 mins", "10 mins", "15 mins", "20 mins", "25 mins", "30 mins", "35 mins", "40 mins", "45 mins", "50 mins", "55 mins", "60 mins"};
 
     View alpha_btn;
+    View setting_time;
 
     Button backto_alpha_main;
 
-    // Defined Array of images id
-    Integer[] imgid = {
-            R.drawable.betal_thirs,
-            R.drawable.betal_thirs,
-            R.drawable.betal_thirs,
-            R.drawable.betal_thirs,
-            R.drawable.betal_thirs,
-            R.drawable.betal_thirs,
-            R.drawable.betal_thirs,
-            R.drawable.betal_thirs,
-            R.drawable.betal_thirs,
-            R.drawable.betal_thirs,
+//    Integer[] imgid = {
+//            R.drawable.betal_thirs,
+//            R.drawable.betal_thirs,
+//            R.drawable.betal_thirs,
+//            R.drawable.betal_thirs,
+//            R.drawable.betal_thirs,
+//            R.drawable.betal_thirs,
+//            R.drawable.betal_thirs,
+//            R.drawable.betal_thirs,
+//            R.drawable.betal_thirs,
+//            R.drawable.betal_thirs,
+//    };
+//
 
-    };
-
-
-    ListViewAdapter adapter;
+    ListViewAdapter adapter_alpha;
+    ListViewAdapter adapter_countdown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +49,24 @@ public class AlphaSettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//              Intent redirect = new Intent(AlphaSettingActivity.this, AlphaActivity.class);
-//              startActivity(redirect);
-
-                ListView song = (ListView) findViewById(R.id.listsong);
-                adapter = new ListViewAdapter(AlphaSettingActivity.this, songs, imgid);
+                ListView song = (ListView) findViewById(R.id.listview);
+                adapter_alpha = new ListViewAdapter(AlphaSettingActivity.this, songs);
                 song.setTextFilterEnabled(true);
-                song.setAdapter(adapter);
+                song.setAdapter(adapter_alpha);
+
+            }
+        });
+
+
+        setting_time = (View) findViewById(R.id.yanging_setting);
+        setting_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ListView settime = (ListView) findViewById(R.id.listview);
+                adapter_countdown = new ListViewAdapter(AlphaSettingActivity.this, settimes);
+//                settime.setTextFilterEnabled(true);
+                settime.setAdapter(adapter_countdown);
 
             }
         });
@@ -71,14 +83,6 @@ public class AlphaSettingActivity extends AppCompatActivity {
 
             }
         });
-
-
-//        ListView song = (ListView) findViewById(R.id.listsong);
-////      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, songs);
-//
-//        adapter = new ListViewAdapter(AlphaSettingActivity.this, songs, imgid);
-//        song.setTextFilterEnabled(true);
-//        song.setAdapter(adapter);
 
 
     }
