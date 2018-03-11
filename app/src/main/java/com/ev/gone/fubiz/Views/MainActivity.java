@@ -28,32 +28,6 @@ public class MainActivity extends AppCompatActivity{
         circleMenu = (CircleMenu) findViewById(R.id.circle_menu);
 
 
-//        circleMenuSe = (CircleMenu) findViewById(R.id.circle_menu);
-
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                Intent homeIntent = new Intent(MainActivity.this, Loading.class);
-//                startActivity(homeIntent);
-//                finish();
-//            }
-//        }, SLASH_TIME_OUT);
-
-
-//        final MediaPlayer slideSound = MediaPlayer.create(this, R.raw.silde);
-//
-//        Button slider = (Button) findViewById(R.id.circle_menur);
-//
-//        slider.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view){
-//                slideSound.start();
-//            }
-//
-//        });
-
         circleMenu.setMainMenu(Color.parseColor("#CDCDCD"), R.mipmap.icon_menu, R.mipmap.icon_cancel);
 
         circleMenu.addSubMenu(Color.parseColor("#C27DF3"), R.mipmap.omega)

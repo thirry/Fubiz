@@ -4,16 +4,24 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.ev.gone.fubiz.Manager.ListViewAdapter;
+import com.ev.gone.fubiz.Manager.SongManager;
+import com.ev.gone.fubiz.Models.Songs;
 import com.ev.gone.fubiz.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class AlphaSettingActivity extends AppCompatActivity {
 
 
-    String songs[] = new String[]{"Requiem", "The Magic Flute", "Piano Sonata No. 11", "Symphony No. 40", "Don Giovanni", "Ave verum corpus"};
     String settimes[] = new String[]{"5 mins", "10 mins", "15 mins", "20 mins", "25 mins", "30 mins", "35 mins", "40 mins", "45 mins", "50 mins", "55 mins", "60 mins"};
 
     View alpha_btn;
@@ -21,27 +29,46 @@ public class AlphaSettingActivity extends AppCompatActivity {
 
     Button backto_alpha_main;
 
-//    Integer[] imgid = {
-//            R.drawable.betal_thirs,
-//            R.drawable.betal_thirs,
-//            R.drawable.betal_thirs,
-//            R.drawable.betal_thirs,
-//            R.drawable.betal_thirs,
-//            R.drawable.betal_thirs,
-//            R.drawable.betal_thirs,
-//            R.drawable.betal_thirs,
-//            R.drawable.betal_thirs,
-//            R.drawable.betal_thirs,
-//    };
-//
-
     ListViewAdapter adapter_alpha;
     ListViewAdapter adapter_countdown;
+
+    private String []mSongsName;
+    private ArrayAdapter<String> mAdapter;
+
+    DatabaseReference mData;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alpha_setting);
+
+        // mapping with data
+        mData = FirebaseDatabase.getInstance().getReference();
+//
+//        final Songs songs_data = new Songs("song 1", 1);
+//        final Songs songs_data1 = new Songs("song 2", 2);
+//        final Songs songs_data2 = new Songs("song 3", 3);
+//        final Songs songs_data3 = new Songs("song 4", 4);
+//        final Songs songs_data4 = new Songs("song 5", 5);
+//        final Songs songs_data5 = new Songs("song 6", 6);
+//        final Songs songs_data6 = new Songs("song 7", 7);
+
+
+        //add data
+//        mData.child("Song").push().setValue(songs_data);
+//        mData.child("Song").push().setValue(songs_data1);
+//        mData.child("Song").push().setValue(songs_data2);
+//        mData.child("Song").push().setValue(songs_data3);
+//        mData.child("Song").push().setValue(songs_data4);
+//        mData.child("Song").push().setValue(songs_data5);
+//        mData.child("Song").push().setValue(songs_data6);
+
+
+        SongManager.getInstance().load();
+        mSongsName = SongManager.getInstance().getSongName();
+
 
 
         alpha_btn = (View) findViewById(R.id.alpha_setting);
@@ -49,10 +76,28 @@ public class AlphaSettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ListView song = (ListView) findViewById(R.id.listview);
-                adapter_alpha = new ListViewAdapter(AlphaSettingActivity.this, songs);
-                song.setTextFilterEnabled(true);
-                song.setAdapter(adapter_alpha);
+                ListView lvsong = (ListView) findViewById(R.id.listview);
+                adapter_alpha = new ListViewAdapter(AlphaSettingActivity.this, mSongsName);
+                lvsong.setAdapter(adapter_alpha);
+
+                //end
+
+                lvsong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        Toast.makeText(getApplicationContext(),
+                                "Selected " + mSongsName[position], Toast.LENGTH_SHORT).show();
+
+                        ArrayList<Songs> songArrayList = SongManager.getInstance().getSongs();
+                        Songs songs = songArrayList.get(position);
+
+                        Intent intent = new Intent(AlphaSettingActivity.this, AlphaActivity.class);
+                        intent.putExtra("fetch_song_name", songs);
+                        startActivity(intent);
+
+                    }
+                });
 
             }
         });
@@ -65,9 +110,8 @@ public class AlphaSettingActivity extends AppCompatActivity {
 
                 ListView settime = (ListView) findViewById(R.id.listview);
                 adapter_countdown = new ListViewAdapter(AlphaSettingActivity.this, settimes);
-//                settime.setTextFilterEnabled(true);
+                settime.setTextFilterEnabled(true);
                 settime.setAdapter(adapter_countdown);
-
             }
         });
 

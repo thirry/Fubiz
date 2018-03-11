@@ -6,8 +6,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.ev.gone.fubiz.Adapters.LinkSongsAdapter;
+import com.ev.gone.fubiz.Manager.SongManager;
+import com.ev.gone.fubiz.Models.LinkSongs;
+import com.ev.gone.fubiz.Models.Songs;
 import com.ev.gone.fubiz.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by gone on 2/24/18.
@@ -37,10 +45,30 @@ public class AlphaActivity extends AppCompatActivity {
     int maxVolume = 50;
 
 
+
+    private Songs mSong;
+    private ListView tv_test;
+    private ArrayList<LinkSongs> mList;
+    private LinkSongsAdapter mLinkSongsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alpha_main);
+
+
+
+//        Intent intent = getIntent();
+//        mSong = (Songs) intent.getSerializableExtra("fetch_song_name") ;
+//
+//        tv_test = findViewById(R.id.tvTest_alpha);
+//        mList = SongManager.getInstance().getLinkSongs(mSong);
+//        mLinkSongsAdapter = new LinkSongsAdapter( this, R.layout.items_link_song, mList);
+//        tv_test.setAdapter(mLinkSongsAdapter);
+
+
+
+
 
         btn_backtohome = (Button) findViewById(R.id.backtohome);
         btn_backtohome.setOnClickListener(new View.OnClickListener() {
@@ -226,12 +254,6 @@ public class AlphaActivity extends AppCompatActivity {
     View.OnClickListener pianoTogglePlayButton = new View.OnClickListener() {
 
         View a;
-
-//      final MediaPlayer slideSound = MediaPlayer.create(this, R.raw.clairdelune);
-
-//        MediaPlayer mPlayer = MediaPlayer.create(null, R.raw.clairdelune);
-
-//       final MediaPlayer mPlayer = MediaPlayer.create(this, R.raw.clairdelune);
 
         @Override
         public void onClick(View v) {

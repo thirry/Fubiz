@@ -163,6 +163,25 @@
     </GridLayout>
 
     <RelativeLayout
+        android:layout_above="@+id/re_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp">
+
+        <ListView
+            android:id="@+id/listviewtest"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true">
+
+        </ListView>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/re_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

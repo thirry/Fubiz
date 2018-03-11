@@ -160,6 +160,26 @@
 
         </LinearLayout>
 
+        <android.support.v4.widget.Space
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/activity_alpha_main_title_height"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ListView
+                android:id="@+id/tvTest_alpha"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
