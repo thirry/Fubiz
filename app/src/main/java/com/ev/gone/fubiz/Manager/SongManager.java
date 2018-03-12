@@ -57,15 +57,15 @@ public class SongManager {
 //
 //    }
 
-    public String[] getSongName(){
-
-        String [] name = new String[mSongList.size()];
-        for (int i = 0; i < name.length; i++){
-            name[i] = mSongList.get(i).getName();
-        }
-
-        return  name;
-    }
+//    public String[] getSongName(){
+//
+//        String [] name = new String[mSongList.size()];
+//        for (int i = 0; i < name.length; i++){
+//            name[i] = mSongList.get(i).getName();
+//        }
+//
+//        return  name;
+//    }
 
     public ArrayList<Songs> getSongs(){
         return mSongList;

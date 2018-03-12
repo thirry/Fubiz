@@ -28,7 +28,6 @@ public class ListViewAdapter extends ArrayAdapter<String> {
 
         this.context = context;
         this.content = content;
-
     }
 
     public View getView(int position, View view, ViewGroup parent) {
@@ -40,7 +39,7 @@ public class ListViewAdapter extends ArrayAdapter<String> {
 
         Typeface customfont = Typeface.createFromAsset(getContext().getAssets(), "font/aqua.ttf");
         tvContent.setTypeface(customfont);
-        ImageView ivImage = (ImageView) rowView.findViewById(R.id.ivImage);
+//        ImageView ivImage = (ImageView) rowView.findViewById(R.id.ivImage);
 
         tvContent.setText(content[position]);
 //        ivImage.setImageResource(imgid[position]);

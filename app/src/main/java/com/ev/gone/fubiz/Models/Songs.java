@@ -8,27 +8,31 @@ import java.io.Serializable;
 
 public class Songs implements Serializable {
 
-    private String name;
-    private int idsongs;
+    public String name;
+    public int idsongs;
+
+    public Songs() {
+
+    }
 
     public Songs(String name, int idsongs) {
         this.name = name;
         this.idsongs = idsongs;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getIdsongs() {
-        return idsongs;
-    }
-
-    public void setIdsongs(int idsongs) {
-        this.idsongs = idsongs;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public int getIdsongs() {
+//        return idsongs;
+//    }
+//
+//    public void setIdsongs(int idsongs) {
+//        this.idsongs = idsongs;
+//    }
 }

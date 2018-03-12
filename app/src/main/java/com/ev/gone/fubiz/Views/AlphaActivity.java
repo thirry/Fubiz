@@ -47,7 +47,9 @@ public class AlphaActivity extends AppCompatActivity {
 
 
     private Songs mSong;
-    private ListView tv_test;
+
+    private TextView tvTest;
+
     private ArrayList<LinkSongs> mList;
     private LinkSongsAdapter mLinkSongsAdapter;
 
@@ -65,6 +67,12 @@ public class AlphaActivity extends AppCompatActivity {
 //        mList = SongManager.getInstance().getLinkSongs(mSong);
 //        mLinkSongsAdapter = new LinkSongsAdapter( this, R.layout.items_link_song, mList);
 //        tv_test.setAdapter(mLinkSongsAdapter);
+
+        tvTest = findViewById(R.id.tvTest_alpha);
+         Intent intent = getIntent();
+
+         tvTest.setText(intent.getStringExtra("push_song"));
+
 
 
 

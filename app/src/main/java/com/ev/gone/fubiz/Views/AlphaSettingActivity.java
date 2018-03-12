@@ -12,8 +12,12 @@ import android.widget.Toast;
 
 import com.ev.gone.fubiz.Manager.ListViewAdapter;
 import com.ev.gone.fubiz.Manager.SongManager;
+import com.ev.gone.fubiz.Models.LinkSongs;
 import com.ev.gone.fubiz.Models.Songs;
 import com.ev.gone.fubiz.R;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,14 +32,22 @@ public class AlphaSettingActivity extends AppCompatActivity {
     View setting_time;
 
     Button backto_alpha_main;
-
-    ListViewAdapter adapter_alpha;
-    ListViewAdapter adapter_countdown;
-
-    private String []mSongsName;
-    private ArrayAdapter<String> mAdapter;
+//
+//    ListViewAdapter adapter_alpha;
+//    ListViewAdapter adapter_countdown;
+//
+//    private String []mSongsName;
+//    private ArrayAdapter<String> mAdapter;
 
     DatabaseReference mData;
+
+
+
+    // data
+    ArrayList<String> ListSong;
+    ArrayAdapter data_adapter = null;
+
+    ListViewAdapter data_adapter_test;
 
 
 
@@ -67,8 +79,23 @@ public class AlphaSettingActivity extends AppCompatActivity {
 
 
         SongManager.getInstance().load();
-        mSongsName = SongManager.getInstance().getSongName();
+//        mSongsName = SongManager.getInstance().getSongName();
 
+        final ListView lvsong = (ListView) findViewById(R.id.listview);
+
+        ListSong = new ArrayList<String>();
+        data_adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ListSong);
+        lvsong.setAdapter(data_adapter);
+
+
+
+//        data_adapter_test = new ListViewAdapter(AlphaSettingActivity.this, ListSong);
+
+
+//        ListView settime = (ListView) findViewById(R.id.listview);
+//                adapter_countdown = new ListViewAdapter(AlphaSettingActivity.this, settimes);
+//                settime.setTextFilterEnabled(true);
+//                settime.setAdapter(adapter_countdown);
 
 
         alpha_btn = (View) findViewById(R.id.alpha_setting);
@@ -76,44 +103,101 @@ public class AlphaSettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ListView lvsong = (ListView) findViewById(R.id.listview);
-                adapter_alpha = new ListViewAdapter(AlphaSettingActivity.this, mSongsName);
-                lvsong.setAdapter(adapter_alpha);
+                mData.child("Song").addChildEventListener(new ChildEventListener() {
 
-                //end
-
-                lvsong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                        Toast.makeText(getApplicationContext(),
-                                "Selected " + mSongsName[position], Toast.LENGTH_SHORT).show();
 
-                        ArrayList<Songs> songArrayList = SongManager.getInstance().getSongs();
-                        Songs songs = songArrayList.get(position);
+                        Songs info = dataSnapshot.getValue(Songs.class);
+                        ListSong.add(info.name);
+                        data_adapter.notifyDataSetChanged();
 
-                        Intent intent = new Intent(AlphaSettingActivity.this, AlphaActivity.class);
-                        intent.putExtra("fetch_song_name", songs);
-                        startActivity(intent);
+
+
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
                     }
                 });
 
+
+//                adapter_alpha = new ListViewAdapter(AlphaSettingActivity.this, mSongsName);
+//                lvsong.setAdapter(adapter_alpha);
+//
+//                //end
+//
+//                lvsong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                        Toast.makeText(getApplicationContext(),
+//                                "Selected " + mSongsName[position], Toast.LENGTH_SHORT).show();
+//
+//                        ArrayList<Songs> songArrayList = SongManager.getInstance().getSongs();
+//                        Songs songs = songArrayList.get(position);
+//
+//                        Intent intent = new Intent(AlphaSettingActivity.this, AlphaActivity.class);
+//                        intent.putExtra("fetch_song_name", songs);
+//                        startActivity(intent);
+//
+//                    }
+//                });
+
             }
         });
 
 
-        setting_time = (View) findViewById(R.id.yanging_setting);
-        setting_time.setOnClickListener(new View.OnClickListener() {
+        lvsong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                ListView settime = (ListView) findViewById(R.id.listview);
-                adapter_countdown = new ListViewAdapter(AlphaSettingActivity.this, settimes);
-                settime.setTextFilterEnabled(true);
-                settime.setAdapter(adapter_countdown);
+
+                if (position == 0){
+                    Intent myIntent = new Intent(view.getContext(), AlphaActivity.class);
+                    myIntent.putExtra("push_song", lvsong.getItemAtPosition(0).toString());
+                    startActivityForResult(myIntent, 0);
+
+                }
+
+                if (position == 1){
+                    Intent myIntent = new Intent(view.getContext(), AlphaActivity.class);
+                    myIntent.putExtra("push_song", lvsong.getItemAtPosition(1).toString());
+                    startActivityForResult(myIntent, 0);
+
+                }
+
             }
         });
+
+//        setting_time = (View) findViewById(R.id.yanging_setting);
+//        setting_time.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                ListView settime = (ListView) findViewById(R.id.listview);
+//                adapter_countdown = new ListViewAdapter(AlphaSettingActivity.this, settimes);
+//                settime.setTextFilterEnabled(true);
+//                settime.setAdapter(adapter_countdown);
+//            }
+//        });
 
 
         backto_alpha_main = (Button) findViewById(R.id.backto_alpha_main);

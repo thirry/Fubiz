@@ -150,7 +150,6 @@
                 android:layout_height="30dp"
                 android:background="@mipmap/soundwaves_demo" />
 
-
         </LinearLayout>
 
 
@@ -171,7 +170,7 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <ListView
+            <TextView
                 android:id="@+id/tvTest_alpha"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
