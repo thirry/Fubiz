@@ -28,13 +28,13 @@ public class SongManager {
     }
     public void load(){
 
-        mSongList.add(new Songs( "Requiem", 1));
-        mSongList.add(new Songs("The Magic Flute", 2));
-        mSongList.add(new Songs("Piano Sonata No. 11", 3));
-        mSongList.add(new Songs("Symphony No. 40", 4));
-        mSongList.add(new Songs("Don Giovanni", 5));
-        mSongList.add(new Songs("Ave verum corpus", 6));
-        mSongList.add(new Songs("Ave verum corpus 2", 7));
+//        mSongList.add(new Songs( "Requiem", 1));
+//        mSongList.add(new Songs("The Magic Flute", 2));
+//        mSongList.add(new Songs("Piano Sonata No. 11", 3));
+//        mSongList.add(new Songs("Symphony No. 40", 4));
+//        mSongList.add(new Songs("Don Giovanni", 5));
+//        mSongList.add(new Songs("Ave verum corpus", 6));
+//        mSongList.add(new Songs("Ave verum corpus 2", 7));
 
 //        mLinkSongs.add(new LinkSongs(1, "link one"));
 //        mLinkSongs.add(new LinkSongs(2, "link two"));

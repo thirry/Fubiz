@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "460653752903-71m85cppshv4d1us8rdu48976q0ka0lc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ev.gone.fubiz",
+            "certificate_hash": "53c2a3a76a4e231b630f52d99e783204e2901269"
+          }
+        },
+        {
           "client_id": "460653752903-d5ds49n9qifle19g73iamtdk299qf3fm.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460653752903-d5ds49n9qifle19g73iamtdk299qf3fm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

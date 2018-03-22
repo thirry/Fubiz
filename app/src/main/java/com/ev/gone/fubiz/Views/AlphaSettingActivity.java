@@ -47,6 +47,8 @@ public class AlphaSettingActivity extends AppCompatActivity {
     ArrayList<String> ListSong;
     ArrayAdapter data_adapter = null;
 
+    ArrayList<String> ListUrl;
+
     ListViewAdapter data_adapter_test;
 
 
@@ -84,8 +86,12 @@ public class AlphaSettingActivity extends AppCompatActivity {
         final ListView lvsong = (ListView) findViewById(R.id.listview);
 
         ListSong = new ArrayList<String>();
+        ListUrl = new ArrayList<String>();
+
         data_adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ListSong);
         lvsong.setAdapter(data_adapter);
+
+
 
 
 
@@ -108,12 +114,10 @@ public class AlphaSettingActivity extends AppCompatActivity {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-
                         Songs info = dataSnapshot.getValue(Songs.class);
                         ListSong.add(info.name);
+                        ListUrl.add(info.url);
                         data_adapter.notifyDataSetChanged();
-
-
 
                     }
 
@@ -173,6 +177,9 @@ public class AlphaSettingActivity extends AppCompatActivity {
                 if (position == 0){
                     Intent myIntent = new Intent(view.getContext(), AlphaActivity.class);
                     myIntent.putExtra("push_song", lvsong.getItemAtPosition(0).toString());
+
+
+                    myIntent.putExtra("push_url", ListUrl.get(0));
                     startActivityForResult(myIntent, 0);
 
                 }

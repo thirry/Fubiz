@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -15,6 +16,7 @@ import com.ev.gone.fubiz.Models.LinkSongs;
 import com.ev.gone.fubiz.Models.Songs;
 import com.ev.gone.fubiz.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -44,6 +46,11 @@ public class AlphaActivity extends AppCompatActivity {
 
     int maxVolume = 50;
 
+    MediaPlayer mPlayers;
+    MediaPlayer mPlayer;
+
+    Button hehe;
+
 
 
     private Songs mSong;
@@ -59,6 +66,12 @@ public class AlphaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alpha_main);
 
 
+        mPlayers = new MediaPlayer();
+
+
+        hehe = findViewById(R.id.hehehe);
+
+
 
 //        Intent intent = getIntent();
 //        mSong = (Songs) intent.getSerializableExtra("fetch_song_name") ;
@@ -68,10 +81,42 @@ public class AlphaActivity extends AppCompatActivity {
 //        mLinkSongsAdapter = new LinkSongsAdapter( this, R.layout.items_link_song, mList);
 //        tv_test.setAdapter(mLinkSongsAdapter);
 
-        tvTest = findViewById(R.id.tvTest_alpha);
+
+         tvTest = findViewById(R.id.tvTest_alpha);
          Intent intent = getIntent();
 
          tvTest.setText(intent.getStringExtra("push_song"));
+
+
+         final String str = intent.getStringExtra("push_url");
+
+
+
+
+        hehe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try{
+
+            mPlayers.setDataSource(str);
+            mPlayers.prepare();
+            mPlayers.start();
+
+
+        }catch (IOException e){
+            Log.v("sa", e.getMessage());
+        }
+
+//                mPlayer.start();
+
+
+                System.out.println(str);
+            }
+        });
+
+
+
 
 
 
@@ -119,10 +164,11 @@ public class AlphaActivity extends AppCompatActivity {
         });
 
 
-        final MediaPlayer mPlayer = MediaPlayer.create(this, R.raw.clairdelune);
+//        final MediaPlayer mPlayer = MediaPlayer.create(this, R.raw.clairdelune);
 
 
 
+        final MediaPlayer mPlayerAlpha = MediaPlayer.create(this, R.raw.alpha10dot0hz);
 
         //animate fo button
         alpha_ic = (Button) findViewById(R.id.alpha_ic);
@@ -133,12 +179,15 @@ public class AlphaActivity extends AppCompatActivity {
 
                 if (isPlay) {
                     v.setBackgroundResource(R.mipmap.alphaic);
+                    mPlayerAlpha.pause();
                 } else {
                     v.setBackgroundResource(R.mipmap.alphaic_active);
+                    mPlayerAlpha.start();
+                    mPlayerAlpha.setVolume((float) 0.3, (float) 0.3);
+                    mPlayerAlpha.setLooping(true);
                 }
 
                 isPlay = !isPlay; // reverse
-
             }
         });
 
@@ -147,8 +196,6 @@ public class AlphaActivity extends AppCompatActivity {
 
         volume_ocean = (Button) findViewById(R.id.ocean_volume);
         volume_ocean.setOnClickListener(oceanTogglePlayButton);
-
-
 
         budhist_ic = (Button) findViewById(R.id.budhist_ic);
 //        budhist_ic.setOnClickListener(pianoTogglePlayButton)
@@ -166,7 +213,7 @@ public class AlphaActivity extends AppCompatActivity {
                 } else if (!isPiano && isPiano_nd && isPiano_rd) {
 
                     mPlayer.start();
-                    mPlayer.setVolume((float) 0.2, (float) 0.2);
+                    mPlayer.setVolume((float) 0.3, (float) 0.3);
 
                     v.setBackgroundResource(R.mipmap.volume_piano_low);
                     isPiano_nd = !isPiano_nd;
