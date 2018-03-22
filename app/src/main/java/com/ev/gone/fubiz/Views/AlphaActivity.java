@@ -91,8 +91,6 @@ public class AlphaActivity extends AppCompatActivity {
          final String str = intent.getStringExtra("push_url");
 
 
-
-
         hehe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
