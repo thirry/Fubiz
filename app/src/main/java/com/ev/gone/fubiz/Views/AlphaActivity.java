@@ -115,10 +115,7 @@ public class AlphaActivity extends AppCompatActivity {
 
 
 
-
-
-
-
+        
 
 
         btn_backtohome = (Button) findViewById(R.id.backtohome);
