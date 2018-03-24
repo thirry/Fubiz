@@ -69,10 +69,6 @@ public class AlphaActivity extends AppCompatActivity {
         mPlayers = new MediaPlayer();
 
 
-        hehe = findViewById(R.id.hehehe);
-
-
-
 //        Intent intent = getIntent();
 //        mSong = (Songs) intent.getSerializableExtra("fetch_song_name") ;
 //
@@ -82,40 +78,34 @@ public class AlphaActivity extends AppCompatActivity {
 //        tv_test.setAdapter(mLinkSongsAdapter);
 
 
-         tvTest = findViewById(R.id.tvTest_alpha);
-         Intent intent = getIntent();
+        tvTest = findViewById(R.id.tvTest_alpha);
 
-         tvTest.setText(intent.getStringExtra("push_song"));
+        Intent intent = getIntent();
 
+        tvTest.setText(intent.getStringExtra("push_song"));
 
-         final String str = intent.getStringExtra("push_url");
+        final String str = intent.getStringExtra("push_url");
 
+//
+//        hehe.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                try{
+//
+//            mPlayers.setDataSource(str);
+//            mPlayers.prepare();
+//            mPlayers.start();
+//
+//
+//        }catch (IOException e){
+//            Log.v("sa", e.getMessage());
+//        }
+//
+//                System.out.println(str);
+//            }
+//        });
 
-        hehe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                try{
-
-            mPlayers.setDataSource(str);
-            mPlayers.prepare();
-            mPlayers.start();
-
-
-        }catch (IOException e){
-            Log.v("sa", e.getMessage());
-        }
-
-//                mPlayer.start();
-
-
-                System.out.println(str);
-            }
-        });
-
-
-
-        
 
 
         btn_backtohome = (Button) findViewById(R.id.backtohome);
@@ -159,10 +149,8 @@ public class AlphaActivity extends AppCompatActivity {
         });
 
 
-//        final MediaPlayer mPlayer = MediaPlayer.create(this, R.raw.clairdelune);
 
-
-
+        //alpha waves button
         final MediaPlayer mPlayerAlpha = MediaPlayer.create(this, R.raw.alpha10dot0hz);
 
         //animate fo button
@@ -187,18 +175,12 @@ public class AlphaActivity extends AppCompatActivity {
         });
 
 
-
-
-        volume_ocean = (Button) findViewById(R.id.ocean_volume);
-        volume_ocean.setOnClickListener(oceanTogglePlayButton);
-
+        // piano button
         budhist_ic = (Button) findViewById(R.id.budhist_ic);
-//        budhist_ic.setOnClickListener(pianoTogglePlayButton)
-
-
         budhist_ic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 if (isPiano && isPiano_nd && isPiano_rd) {
                     v.setBackgroundResource(R.mipmap.volume_piano_max);
@@ -207,32 +189,43 @@ public class AlphaActivity extends AppCompatActivity {
 
                 } else if (!isPiano && isPiano_nd && isPiano_rd) {
 
-                    mPlayer.start();
-                    mPlayer.setVolume((float) 0.3, (float) 0.3);
+//                    mPlayer.start();
+//                    mPlayer.setVolume((float) 0.3, (float) 0.3);
 
                     v.setBackgroundResource(R.mipmap.volume_piano_low);
                     isPiano_nd = !isPiano_nd;
 
 
+                    try{
+
+                        mPlayers.setDataSource(str);
+                        mPlayers.prepare();
+                        mPlayers.start();
+
+
+                    }catch (IOException e){
+                        Log.v("sa", e.getMessage());
+                    }
+
                 } else if (isPiano && !isPiano_nd && isPiano_rd) {
 
-                    mPlayer.start();
-                    mPlayer.setVolume((float) 0.5, (float) 0.5);
+//                    mPlayer.start();
+//                    mPlayer.setVolume((float) 0.5, (float) 0.5);
 
                     v.setBackgroundResource(R.mipmap.volume_piano_middle);
 //                isOcean_nd = isOcean_nd;
                     isPiano = !isPiano;
                     isPiano_rd = !isPiano_rd;
 
-                    mPlayer.start();
-                    mPlayer.setVolume((float) 0.7, (float) 0.7);
+//                    mPlayer.start();
+//                    mPlayer.setVolume((float) 0.7, (float) 0.7);
 
                 } else if (isPiano && !isPiano_nd && !isPiano_rd) {
                     v.setBackgroundResource(R.mipmap.volume_piano_max);
                     isPiano_nd = !isPiano_nd;
 
-                    mPlayer.start();
-                    mPlayer.setVolume((float) 1.0, (float) 1.0);
+//                    mPlayer.start();
+//                    mPlayer.setVolume((float) 1.0, (float) 1.0);
 
 
 //                isOcean_rd =!isOcean_rd;
@@ -240,14 +233,14 @@ public class AlphaActivity extends AppCompatActivity {
                     v.setBackgroundResource(R.mipmap.budhist);
                     isPiano_rd = !isPiano_rd;
 
-                    mPlayer.pause();
+//                    mPlayer.pause();
 
                 } else if (!isPiano && isPiano_nd && !isPiano_rd) {
                     mPlayer.start();
                     v.setBackgroundResource(R.mipmap.volume_piano_low);
 
-                    mPlayer.start();
-                    mPlayer.setVolume((float) 0.2, (float) 0.2);
+//                    mPlayer.start();
+//                    mPlayer.setVolume((float) 0.2, (float) 0.2);
                 }
 
 
@@ -258,164 +251,231 @@ public class AlphaActivity extends AppCompatActivity {
         });
 
 
-//        Button slider = (Button) findViewById(R.id.circle_menur);
-//
-//        slider.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                slideSound.start();
-//            }
-//
-//        });
+        volume_ocean = (Button) findViewById(R.id.ocean_volume);
+        volume_ocean.setOnClickListener(new View.OnClickListener() {
+
+            View a;
+
+            @Override
+            public void onClick(View v) {
 
 
-//        alpha_ic.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                if (v == alpha_ic){
-//                    alpha_ic.setBackgroundResource(R.mipmap.alphaic_active);
-//                }
-//            }
-//
-//        });
+                if (isOcean && isOcean_nd && isOcean_rd) {
+                    v.setBackgroundResource(R.mipmap.volume_ocean_max);
 
+
+                } else if (!isOcean && isOcean_nd && isOcean_rd) {
+                    v.setBackgroundResource(R.mipmap.volume_ocean_low);
+                    isOcean_nd = !isOcean_nd;
+
+                } else if (isOcean && !isOcean_nd && isOcean_rd) {
+                    v.setBackgroundResource(R.mipmap.volume_ocean_middle);
+//                isOcean_nd = isOcean_nd;
+                    isOcean = !isOcean;
+                    isOcean_rd = !isOcean_rd;
+
+                } else if (isOcean && !isOcean_nd && !isOcean_rd) {
+                    v.setBackgroundResource(R.mipmap.volume_ocean_max);
+                    isOcean_nd = !isOcean_nd;
+//                isOcean_rd =!isOcean_rd;
+                } else if (!isOcean && isOcean_nd && !isOcean_rd) {
+                    v.setBackgroundResource(R.mipmap.volume_ocean_mute);
+                    isOcean_rd = !isOcean_rd;
+
+                } else if (isOcean && isOcean_nd && isOcean_rd) {
+                    v.setBackgroundResource(R.mipmap.volume_ocean_low);
+                }
+
+                isOcean = !isOcean;
+
+            }
+
+        });
 
     }
+}
 
 
-    View.OnClickListener alphaTogglePlayButton = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-
-            if (isPlay) {
-                v.setBackgroundResource(R.mipmap.alphaic);
-            } else {
-                v.setBackgroundResource(R.mipmap.alphaic_active);
-            }
-
-            isPlay = !isPlay; // reverse
-        }
-
-    };
-
-    View.OnClickListener pianoTogglePlayButton = new View.OnClickListener() {
-
-        View a;
-
-        @Override
-        public void onClick(View v) {
 
 
-            if (isPiano && isPiano_nd && isPiano_rd) {
-                v.setBackgroundResource(R.mipmap.volume_piano_max);
-
-//                v.playSoundEffect();
-
-            } else if (!isPiano && isPiano_nd && isPiano_rd) {
-                v.setBackgroundResource(R.mipmap.volume_piano_low);
-                isPiano_nd = !isPiano_nd;
-
-                //        mPlayer.start();
 
 
-            } else if (isPiano && !isPiano_nd && isPiano_rd) {
-                v.setBackgroundResource(R.mipmap.volume_piano_middle);
-//                isOcean_nd = isOcean_nd;
-                isPiano = !isPiano;
-                isPiano_rd = !isPiano_rd;
-
-            } else if (isPiano && !isPiano_nd && !isPiano_rd) {
-                v.setBackgroundResource(R.mipmap.volume_piano_max);
-                isPiano_nd = !isPiano_nd;
-//                isOcean_rd =!isOcean_rd;
-            } else if (!isPiano && isPiano_nd && !isPiano_rd) {
-                v.setBackgroundResource(R.mipmap.budhist);
-                isPiano_rd = !isPiano_rd;
-
-            } else if (!isPiano && isPiano_nd && !isPiano_rd) {
-                v.setBackgroundResource(R.mipmap.volume_piano_low);
-            }
 
 
-            isPiano = !isPiano;
-
-        }
-
-    };
 
 
-    View.OnClickListener oceanTogglePlayButton = new View.OnClickListener() {
-
-        View a;
-
-        @Override
-        public void onClick(View v) {
 
 
-            if (isOcean && isOcean_nd && isOcean_rd) {
-                v.setBackgroundResource(R.mipmap.volume_ocean_max);
 
 
-            } else if (!isOcean && isOcean_nd && isOcean_rd) {
-                v.setBackgroundResource(R.mipmap.volume_ocean_low);
-                isOcean_nd = !isOcean_nd;
-
-            } else if (isOcean && !isOcean_nd && isOcean_rd) {
-                v.setBackgroundResource(R.mipmap.volume_ocean_middle);
-//                isOcean_nd = isOcean_nd;
-                isOcean = !isOcean;
-                isOcean_rd = !isOcean_rd;
-
-            } else if (isOcean && !isOcean_nd && !isOcean_rd) {
-                v.setBackgroundResource(R.mipmap.volume_ocean_max);
-                isOcean_nd = !isOcean_nd;
-//                isOcean_rd =!isOcean_rd;
-            } else if (!isOcean && isOcean_nd && !isOcean_rd) {
-                v.setBackgroundResource(R.mipmap.volume_ocean_mute);
-                isOcean_rd = !isOcean_rd;
-
-            } else if (isOcean && isOcean_nd && isOcean_rd) {
-                v.setBackgroundResource(R.mipmap.volume_ocean_low);
-            }
 
 
-            isOcean = !isOcean;
 
-//            if (isOcean) {
-//                v.setBackgroundResource(R.mipmap.volume_ocean_max);
-//                isOcean_nd = false;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// /////////
+
+//out create function
+
+
 //
-//            } else if (isOcean_nd = false) {
+//    View.OnClickListener pianoTogglePlayButton = new View.OnClickListener() {
+//
+//        View a;
+//
+//        @Override
+//        public void onClick(View v) {
+//
+//
+//            if (isPiano && isPiano_nd && isPiano_rd) {
+//                v.setBackgroundResource(R.mipmap.volume_piano_max);
+//
+//
+//            } else if (!isPiano && isPiano_nd && isPiano_rd) {
+//                v.setBackgroundResource(R.mipmap.volume_piano_low);
+//                isPiano_nd = !isPiano_nd;
+//
+//            } else if (isPiano && !isPiano_nd && isPiano_rd) {
+//                v.setBackgroundResource(R.mipmap.volume_piano_middle);
+//
+//                isPiano = !isPiano;
+//                isPiano_rd = !isPiano_rd;
+//
+//            } else if (isPiano && !isPiano_nd && !isPiano_rd) {
+//                v.setBackgroundResource(R.mipmap.volume_piano_max);
+//                isPiano_nd = !isPiano_nd;
+//
+//            } else if (!isPiano && isPiano_nd && !isPiano_rd) {
+//                v.setBackgroundResource(R.mipmap.budhist);
+//                isPiano_rd = !isPiano_rd;
+//
+//            } else if (!isPiano && isPiano_nd && !isPiano_rd) {
+//                v.setBackgroundResource(R.mipmap.volume_piano_low);
+//            }
+//
+//
+//            isPiano = !isPiano;
+//
+//        }
+//
+//    };
+
+
+//    View.OnClickListener oceanTogglePlayButton = new View.OnClickListener() {
+//
+//        View a;
+//
+//        @Override
+//        public void onClick(View v) {
+//
+//
+//            if (isOcean && isOcean_nd && isOcean_rd) {
+//                v.setBackgroundResource(R.mipmap.volume_ocean_max);
+//
+//
+//            } else if (!isOcean && isOcean_nd && isOcean_rd) {
 //                v.setBackgroundResource(R.mipmap.volume_ocean_low);
-//                isOcean_nd = true;
-//                isOcean = true;
+//                isOcean_nd = !isOcean_nd;
 //
-//            } else if(isOcean = true) {
+//            } else if (isOcean && !isOcean_nd && isOcean_rd) {
 //                v.setBackgroundResource(R.mipmap.volume_ocean_middle);
-//                isOcean = false;
-//            }
-
-//            if (isOcean_nd = true){
-//                v.setBackgroundResource(R.mipmap.volume_ocean_middle);
+////                isOcean_nd = isOcean_nd;
+//                isOcean = !isOcean;
+//                isOcean_rd = !isOcean_rd;
 //
-//            }else{
+//            } else if (isOcean && !isOcean_nd && !isOcean_rd) {
 //                v.setBackgroundResource(R.mipmap.volume_ocean_max);
-//            }
-
-//            if (!isOcean){
-//                v.setBackgroundResource(R.mipmap.volume_ocean_middle);
-//            }else{
-//                v.setBackgroundResource(R.mipmap.volume_ocean_max);
+//                isOcean_nd = !isOcean_nd;
+////                isOcean_rd =!isOcean_rd;
+//            } else if (!isOcean && isOcean_nd && !isOcean_rd) {
+//                v.setBackgroundResource(R.mipmap.volume_ocean_mute);
+//                isOcean_rd = !isOcean_rd;
 //
+//            } else if (isOcean && isOcean_nd && isOcean_rd) {
+//                v.setBackgroundResource(R.mipmap.volume_ocean_low);
 //            }
-
-//            isOcean = !isOcean; // reverse
-        }
-
-    };
+//
+//
+//            isOcean = !isOcean;
+//
+////            if (isOcean) {
+////                v.setBackgroundResource(R.mipmap.volume_ocean_max);
+////                isOcean_nd = false;
+////
+////            } else if (isOcean_nd = false) {
+////                v.setBackgroundResource(R.mipmap.volume_ocean_low);
+////                isOcean_nd = true;
+////                isOcean = true;
+////
+////            } else if(isOcean = true) {
+////                v.setBackgroundResource(R.mipmap.volume_ocean_middle);
+////                isOcean = false;
+////            }
+//
+////            if (isOcean_nd = true){
+////                v.setBackgroundResource(R.mipmap.volume_ocean_middle);
+////
+////            }else{
+////                v.setBackgroundResource(R.mipmap.volume_ocean_max);
+////            }
+//
+////            if (!isOcean){
+////                v.setBackgroundResource(R.mipmap.volume_ocean_middle);
+////            }else{
+////                v.setBackgroundResource(R.mipmap.volume_ocean_max);
+////
+////            }
+//
+////            isOcean = !isOcean; // reverse
+//        }
+//
+//    };
 
 
 //    @Override
@@ -436,4 +496,4 @@ public class AlphaActivity extends AppCompatActivity {
 //    }
 
 
-}
+//}

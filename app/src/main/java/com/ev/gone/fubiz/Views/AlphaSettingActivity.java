@@ -161,7 +161,6 @@ public class AlphaSettingActivity extends AppCompatActivity {
 //                        Intent intent = new Intent(AlphaSettingActivity.this, AlphaActivity.class);
 //                        intent.putExtra("fetch_song_name", songs);
 //                        startActivity(intent);
-//
 //                    }
 //                });
 
