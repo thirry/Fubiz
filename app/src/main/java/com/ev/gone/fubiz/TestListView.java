@@ -70,7 +70,11 @@ public class TestListView extends Activity {
         lvList = (ListView) findViewById(R.id.lvList);
 
         //call list view adapter constructor
-        adapter = new ListViewAdapter(TestListView.this, values);
+
+//        adapter = new ListViewAdapter(TestListView.this, values);
+
+
+
         //Assign Above Array Adapter to ListView
         lvList.setAdapter(adapter);
         //Create ListView Item click listener

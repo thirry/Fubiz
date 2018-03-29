@@ -26,20 +26,16 @@ import java.util.ArrayList;
 public class AlphaSettingActivity extends AppCompatActivity {
 
 
-    String settimes[] = new String[]{"5 mins", "10 mins", "15 mins", "20 mins", "25 mins", "30 mins", "35 mins", "40 mins", "45 mins", "50 mins", "55 mins", "60 mins"};
+//    String settimes[] = new String[]{"5 mins", "10 mins", "15 mins", "20 mins", "25 mins", "30 mins", "35 mins", "40 mins", "45 mins", "50 mins", "55 mins", "60 mins"};
 
     View alpha_btn;
-    View setting_time;
+//    View setting_time;
 
     Button backto_alpha_main;
-//
-//    ListViewAdapter adapter_alpha;
-//    ListViewAdapter adapter_countdown;
-//
-//    private String []mSongsName;
-//    private ArrayAdapter<String> mAdapter;
 
     DatabaseReference mData;
+    String mDatase[];
+
 
 
 
@@ -58,26 +54,10 @@ public class AlphaSettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alpha_setting);
 
+
         // mapping with data
         mData = FirebaseDatabase.getInstance().getReference();
-//
-//        final Songs songs_data = new Songs("song 1", 1);
-//        final Songs songs_data1 = new Songs("song 2", 2);
-//        final Songs songs_data2 = new Songs("song 3", 3);
-//        final Songs songs_data3 = new Songs("song 4", 4);
-//        final Songs songs_data4 = new Songs("song 5", 5);
-//        final Songs songs_data5 = new Songs("song 6", 6);
-//        final Songs songs_data6 = new Songs("song 7", 7);
 
-
-        //add data
-//        mData.child("Song").push().setValue(songs_data);
-//        mData.child("Song").push().setValue(songs_data1);
-//        mData.child("Song").push().setValue(songs_data2);
-//        mData.child("Song").push().setValue(songs_data3);
-//        mData.child("Song").push().setValue(songs_data4);
-//        mData.child("Song").push().setValue(songs_data5);
-//        mData.child("Song").push().setValue(songs_data6);
 
 
         SongManager.getInstance().load();
@@ -88,20 +68,13 @@ public class AlphaSettingActivity extends AppCompatActivity {
         ListSong = new ArrayList<String>();
         ListUrl = new ArrayList<String>();
 
-        data_adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ListSong);
-        lvsong.setAdapter(data_adapter);
+//        data_adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ListSong);
+//        lvsong.setAdapter(data_adapter);
 
 
+        data_adapter_test = new ListViewAdapter(AlphaSettingActivity.this, ListSong);
+        lvsong.setAdapter(data_adapter_test);
 
-
-
-//        data_adapter_test = new ListViewAdapter(AlphaSettingActivity.this, ListSong);
-
-
-//        ListView settime = (ListView) findViewById(R.id.listview);
-//                adapter_countdown = new ListViewAdapter(AlphaSettingActivity.this, settimes);
-//                settime.setTextFilterEnabled(true);
-//                settime.setAdapter(adapter_countdown);
 
 
         alpha_btn = (View) findViewById(R.id.alpha_setting);
@@ -117,7 +90,7 @@ public class AlphaSettingActivity extends AppCompatActivity {
                         Songs info = dataSnapshot.getValue(Songs.class);
                         ListSong.add(info.name);
                         ListUrl.add(info.url);
-                        data_adapter.notifyDataSetChanged();
+                        data_adapter_test.notifyDataSetChanged();
 
                     }
 
@@ -135,13 +108,11 @@ public class AlphaSettingActivity extends AppCompatActivity {
                     public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
                 });
-
 
 //                adapter_alpha = new ListViewAdapter(AlphaSettingActivity.this, mSongsName);
 //                lvsong.setAdapter(adapter_alpha);
@@ -186,8 +157,19 @@ public class AlphaSettingActivity extends AppCompatActivity {
                 if (position == 1){
                     Intent myIntent = new Intent(view.getContext(), AlphaActivity.class);
                     myIntent.putExtra("push_song", lvsong.getItemAtPosition(1).toString());
-                    startActivityForResult(myIntent, 0);
 
+
+                    myIntent.putExtra("push_url", ListUrl.get(1));
+                    startActivityForResult(myIntent, 1);
+                }
+
+                if (position == 2){
+                    Intent myIntent = new Intent(view.getContext(), AlphaActivity.class);
+                    myIntent.putExtra("push_song", lvsong.getItemAtPosition(2).toString());
+
+
+                    myIntent.putExtra("push_url", ListUrl.get(2));
+                    startActivityForResult(myIntent, 2);
                 }
 
             }

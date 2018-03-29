@@ -15,14 +15,16 @@ import android.widget.TextView;
 
 import com.ev.gone.fubiz.R;
 
+import java.util.ArrayList;
+
 public class ListViewAdapter extends ArrayAdapter<String> {
 
     private final Activity context;
-    private final String[] content;
+    ArrayList<String> content;
 //    private final Integer[] imgid;
     TextView tvContent;
 
-    public ListViewAdapter(Activity context, String[] content) {
+    public ListViewAdapter(Activity context, ArrayList<String> content) {
         super(context, R.layout.inflate_list_view, content);
         // TODO Auto-generated constructor stub
 
@@ -41,7 +43,7 @@ public class ListViewAdapter extends ArrayAdapter<String> {
         tvContent.setTypeface(customfont);
 //        ImageView ivImage = (ImageView) rowView.findViewById(R.id.ivImage);
 
-        tvContent.setText(content[position]);
+        tvContent.setText(content.get(position));
 //        ivImage.setImageResource(imgid[position]);
         return rowView;
 

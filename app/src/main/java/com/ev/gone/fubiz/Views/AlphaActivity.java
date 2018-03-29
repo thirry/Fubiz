@@ -1,14 +1,19 @@
 package com.ev.gone.fubiz.Views;
 
+import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ev.gone.fubiz.Adapters.LinkSongsAdapter;
 import com.ev.gone.fubiz.Manager.SongManager;
@@ -51,6 +56,11 @@ public class AlphaActivity extends AppCompatActivity {
 
     Button hehe;
 
+    Boolean wifiConnected;
+    Boolean mobileConnected;
+
+    private Toast mToastToShow;
+
 
 
     private Songs mSong;
@@ -65,6 +75,7 @@ public class AlphaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alpha_main);
 
+        checkConnection();
 
         mPlayers = new MediaPlayer();
 
@@ -86,25 +97,35 @@ public class AlphaActivity extends AppCompatActivity {
 
         final String str = intent.getStringExtra("push_url");
 
-//
-//        hehe.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                try{
+
+//        try{
 //
 //            mPlayers.setDataSource(str);
 //            mPlayers.prepare();
-//            mPlayers.start();
-//
+////            mPlayers.start();
 //
 //        }catch (IOException e){
-//            Log.v("sa", e.getMessage());
+//            Log.v("lost data", e.getMessage());
 //        }
-//
-//                System.out.println(str);
-//            }
-//        });
+
+        if (str == null){
+
+//            Toast.makeText(getApplicationContext(), "You need choose a song.",
+//                    Toast.LENGTH_SHORT).show();
+            mPlayers = MediaPlayer.create(this, R.raw.clairdelune);
+
+        }else{
+
+            try{
+
+                mPlayers.setDataSource(str);
+                mPlayers.prepare();
+
+            }catch (IOException e){
+                Log.v("lost data", e.getMessage());
+            }
+
+        }
 
 
 
@@ -126,6 +147,9 @@ public class AlphaActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+
+                mPlayers.reset();
+                mPlayers.pause();
 
                 Intent redirect = new Intent(AlphaActivity.this, AlphaSettingActivity.class);
                 startActivity(redirect);
@@ -181,75 +205,56 @@ public class AlphaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                System.out.println(str);
 
                 if (isPiano && isPiano_nd && isPiano_rd) {
                     v.setBackgroundResource(R.mipmap.volume_piano_max);
 
-//                v.playSoundEffect();
 
                 } else if (!isPiano && isPiano_nd && isPiano_rd) {
-
-//                    mPlayer.start();
-//                    mPlayer.setVolume((float) 0.3, (float) 0.3);
-
-                    v.setBackgroundResource(R.mipmap.volume_piano_low);
                     isPiano_nd = !isPiano_nd;
 
-
-                    try{
-
-                        mPlayers.setDataSource(str);
-                        mPlayers.prepare();
-                        mPlayers.start();
-
-
-                    }catch (IOException e){
-                        Log.v("sa", e.getMessage());
-                    }
+                    v.setBackgroundResource(R.mipmap.volume_piano_low);
+                    mPlayers.start();
+                    mPlayers.setVolume((float) 0.4, (float) 0.4);
+                    mPlayers.setLooping(true);
 
                 } else if (isPiano && !isPiano_nd && isPiano_rd) {
 
-//                    mPlayer.start();
-//                    mPlayer.setVolume((float) 0.5, (float) 0.5);
-
                     v.setBackgroundResource(R.mipmap.volume_piano_middle);
-//                isOcean_nd = isOcean_nd;
+
                     isPiano = !isPiano;
                     isPiano_rd = !isPiano_rd;
-
-//                    mPlayer.start();
-//                    mPlayer.setVolume((float) 0.7, (float) 0.7);
+                    mPlayers.start();
+                    mPlayers.setVolume((float) 0.7, (float) 0.7);
+                    mPlayers.setLooping(true);
 
                 } else if (isPiano && !isPiano_nd && !isPiano_rd) {
+
                     v.setBackgroundResource(R.mipmap.volume_piano_max);
                     isPiano_nd = !isPiano_nd;
+                    mPlayers.start();
+                    mPlayers.setVolume((float) 1.0, (float) 1.0);
 
-//                    mPlayer.start();
-//                    mPlayer.setVolume((float) 1.0, (float) 1.0);
-
-
-//                isOcean_rd =!isOcean_rd;
                 } else if (!isPiano && isPiano_nd && !isPiano_rd) {
                     v.setBackgroundResource(R.mipmap.budhist);
                     isPiano_rd = !isPiano_rd;
 
-//                    mPlayer.pause();
+                    mPlayers.pause();
 
                 } else if (!isPiano && isPiano_nd && !isPiano_rd) {
-                    mPlayer.start();
+
                     v.setBackgroundResource(R.mipmap.volume_piano_low);
+                    mPlayers.start();
+                    mPlayers.setVolume((float) 0.4, (float) 0.4);
+                    mPlayers.setLooping(true);
 
-//                    mPlayer.start();
-//                    mPlayer.setVolume((float) 0.2, (float) 0.2);
                 }
-
-
                 isPiano = !isPiano;
-
-
             }
         });
 
+        final MediaPlayer mPlayerOcean = MediaPlayer.create(this, R.raw.oceansound);
 
         volume_ocean = (Button) findViewById(R.id.ocean_volume);
         volume_ocean.setOnClickListener(new View.OnClickListener() {
@@ -262,28 +267,45 @@ public class AlphaActivity extends AppCompatActivity {
 
                 if (isOcean && isOcean_nd && isOcean_rd) {
                     v.setBackgroundResource(R.mipmap.volume_ocean_max);
-
+                    mPlayerOcean.pause();
 
                 } else if (!isOcean && isOcean_nd && isOcean_rd) {
                     v.setBackgroundResource(R.mipmap.volume_ocean_low);
                     isOcean_nd = !isOcean_nd;
 
+                    mPlayerOcean.start();
+                    mPlayerOcean.setVolume((float) 0.4, (float) 0.4);
+
+
                 } else if (isOcean && !isOcean_nd && isOcean_rd) {
                     v.setBackgroundResource(R.mipmap.volume_ocean_middle);
-//                isOcean_nd = isOcean_nd;
+//                  isOcean_nd = isOcean_nd;
                     isOcean = !isOcean;
                     isOcean_rd = !isOcean_rd;
+
+//                    mPlayerOcean.start();
+                    mPlayerOcean.setVolume((float) 0.7, (float) 0.7);
 
                 } else if (isOcean && !isOcean_nd && !isOcean_rd) {
                     v.setBackgroundResource(R.mipmap.volume_ocean_max);
                     isOcean_nd = !isOcean_nd;
 //                isOcean_rd =!isOcean_rd;
+
+//                    mPlayerOcean.start();
+                    mPlayerOcean.setVolume((float) 1.0, (float) 1.0);
+
                 } else if (!isOcean && isOcean_nd && !isOcean_rd) {
                     v.setBackgroundResource(R.mipmap.volume_ocean_mute);
                     isOcean_rd = !isOcean_rd;
 
+                    mPlayerOcean.pause();
+
+
                 } else if (isOcean && isOcean_nd && isOcean_rd) {
                     v.setBackgroundResource(R.mipmap.volume_ocean_low);
+                    mPlayerOcean.start();
+                    mPlayerOcean.setVolume((float) 0.4, (float) 0.4);
+
                 }
 
                 isOcean = !isOcean;
@@ -293,6 +315,55 @@ public class AlphaActivity extends AppCompatActivity {
         });
 
     }
+
+
+    private void checkConnection(){
+
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Service.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if(networkInfo != null && networkInfo.isConnected()){
+
+            wifiConnected = networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
+            mobileConnected = networkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
+
+            if (wifiConnected){
+
+
+            }else{
+
+
+            }
+
+
+        }else {
+           showToast();
+        }
+    }
+
+    public void showToast() {
+        // Set the toast and duration
+        int toastDurationInMilliSeconds = 10000;
+        mToastToShow = Toast.makeText(this, "You are in offline-mode", Toast.LENGTH_LONG);
+
+        // Set the countdown to display the toast
+        CountDownTimer toastCountDown;
+        toastCountDown = new CountDownTimer(toastDurationInMilliSeconds, 1000 /*Tick duration*/) {
+            public void onTick(long millisUntilFinished) {
+                mToastToShow.show();
+            }
+            public void onFinish() {
+                mToastToShow.cancel();
+            }
+        };
+
+        // Show the toast and starts the countdown
+        mToastToShow.show();
+        toastCountDown.start();
+    }
+
+
 }
 
 
