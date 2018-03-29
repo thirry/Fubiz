@@ -11,12 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ev.gone.fubiz.Adapters.LinkSongsAdapter;
-import com.ev.gone.fubiz.Manager.SongManager;
 import com.ev.gone.fubiz.Models.LinkSongs;
 import com.ev.gone.fubiz.Models.Songs;
 import com.ev.gone.fubiz.R;
@@ -254,7 +252,7 @@ public class AlphaActivity extends AppCompatActivity {
             }
         });
 
-        final MediaPlayer mPlayerOcean = MediaPlayer.create(this, R.raw.oceansound);
+        final MediaPlayer mPlayerOcean = MediaPlayer.create(this, R.raw.oceansounds);
 
         volume_ocean = (Button) findViewById(R.id.ocean_volume);
         volume_ocean.setOnClickListener(new View.OnClickListener() {
