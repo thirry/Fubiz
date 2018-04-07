@@ -22,7 +22,10 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:text="Medium Text"
-            android:textSize="15dp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="12sp"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeStepGranularity="2sp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"/>
     </LinearLayout>

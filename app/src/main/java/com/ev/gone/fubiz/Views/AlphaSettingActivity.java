@@ -114,6 +114,9 @@ public class AlphaSettingActivity extends AppCompatActivity {
                     }
                 });
 
+
+
+
 //                adapter_alpha = new ListViewAdapter(AlphaSettingActivity.this, mSongsName);
 //                lvsong.setAdapter(adapter_alpha);
 //
