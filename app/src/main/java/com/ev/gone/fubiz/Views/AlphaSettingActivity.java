@@ -26,17 +26,15 @@ import java.util.ArrayList;
 public class AlphaSettingActivity extends AppCompatActivity {
 
 
-//    String settimes[] = new String[]{"5 mins", "10 mins", "15 mins", "20 mins", "25 mins", "30 mins", "35 mins", "40 mins", "45 mins", "50 mins", "55 mins", "60 mins"};
+    String settimes[] = new String[]{"5 mins", "10 mins", "15 mins", "20 mins", "25 mins", "30 mins", "35 mins", "40 mins", "45 mins", "50 mins", "55 mins", "60 mins"};
 
     View alpha_btn;
-//    View setting_time;
+    View setting_time;
 
     Button backto_alpha_main;
 
     DatabaseReference mData;
     String mDatase[];
-
-
 
 
     // data
@@ -115,28 +113,6 @@ public class AlphaSettingActivity extends AppCompatActivity {
                 });
 
 
-
-
-//                adapter_alpha = new ListViewAdapter(AlphaSettingActivity.this, mSongsName);
-//                lvsong.setAdapter(adapter_alpha);
-//
-//                //end
-//
-//                lvsong.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                        Toast.makeText(getApplicationContext(),
-//                                "Selected " + mSongsName[position], Toast.LENGTH_SHORT).show();
-//
-//                        ArrayList<Songs> songArrayList = SongManager.getInstance().getSongs();
-//                        Songs songs = songArrayList.get(position);
-//
-//                        Intent intent = new Intent(AlphaSettingActivity.this, AlphaActivity.class);
-//                        intent.putExtra("fetch_song_name", songs);
-//                        startActivity(intent);
-//                    }
-//                });
 
             }
         });
