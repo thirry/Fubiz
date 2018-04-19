@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ev.gone.fubiz.Views.SettingCountdownActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="60dp"
+        >
+
+        <NumberPicker
+            android:id="@+id/npHours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </NumberPicker>
+
+
+        <NumberPicker
+            android:id="@+id/npMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/npHours"
+            android:layout_marginLeft="20dp">
+
+        </NumberPicker>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:layout_centerInParent="true"
+        android:background="@drawable/button_countdown"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        />
+
+
+
+</RelativeLayout>

@@ -134,12 +134,10 @@ public class AlphaActivity extends AppCompatActivity {
         }
 
         //alpha waves button
-      //  final MediaPlayer mPlayerAlpha = MediaPlayer.create(this, R.raw.alpha10dot0hz);
+        //  final MediaPlayer mPlayerAlpha = MediaPlayer.create(this, R.raw.alpha10dot0hz);
 
         //animate fo button
         alpha_ic = (Button) findViewById(R.id.alpha_ic);
-
-
 
 
         btn_backtohome = (Button) findViewById(R.id.backtohome);
@@ -147,6 +145,13 @@ public class AlphaActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+
+                mPlayers.reset();
+                mPlayers.pause();
+                mPlayerAlpha.reset();
+                mPlayerAlpha.pause();
+                mPlayerOcean.reset();
+                mPlayerOcean.pause();
 
                 Intent redirect = new Intent(AlphaActivity.this, MainActivity.class);
                 startActivity(redirect);
@@ -165,6 +170,9 @@ public class AlphaActivity extends AppCompatActivity {
                 mPlayers.pause();
                 mPlayerAlpha.reset();
                 mPlayerAlpha.pause();
+                mPlayerOcean.reset();
+                mPlayerOcean.pause();
+
 
                 Intent redirect = new Intent(AlphaActivity.this, AlphaSettingActivity.class);
                 startActivity(redirect);
@@ -377,7 +385,7 @@ public class AlphaActivity extends AppCompatActivity {
 
 
         }else {
-           showToast();
+            showToast();
         }
     }
 

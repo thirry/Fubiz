@@ -76,14 +76,14 @@ public class CountdownActivity extends AppCompatActivity {
             }
         });
 
-//        btnSetting.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(CountdownActivity.this, SettingActivity.class);
-//                startActivity(intent);
-//
-//            }
-//        });
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CountdownActivity.this, SettingCountdownActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void startStop() {
@@ -144,12 +144,6 @@ public class CountdownActivity extends AppCompatActivity {
                 buttonStartStop.setText("START");
 
 
-
-
-
-
-
-
             }
         }.start();
         smoothAnimation.start();
@@ -178,6 +172,6 @@ public class CountdownActivity extends AppCompatActivity {
     private void setTimerValues() {
         Intent intent = getIntent();
         // assigning values after converting to milliseconds
-        timeCountInMilliSeconds = intent.getLongExtra("minutes", 1) * 10 * 1000;
+        timeCountInMilliSeconds = intent.getLongExtra("minutes", 5) * 60 * 1000;
     }
 }
