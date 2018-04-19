@@ -32,7 +32,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile 'com.github.Hitomis:CircleMenu:v1.0.0'
     compile 'com.github.HotBitmapGG:RingProgressBar:V1.2.3'
+
+    compile 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    testCompile 'junit:junit:4.12'
 }
+
 
 
 

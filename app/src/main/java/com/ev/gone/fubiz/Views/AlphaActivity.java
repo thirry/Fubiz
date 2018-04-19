@@ -172,7 +172,7 @@ public class AlphaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent redirect = new Intent(AlphaActivity.this, MainActivity.class);
+                Intent redirect = new Intent(AlphaActivity.this, CountdownActivity.class);
                 startActivity(redirect);
 
             }
@@ -253,7 +253,13 @@ public class AlphaActivity extends AppCompatActivity {
             }
         });
 
+        Intent intentocean = new Intent(AlphaActivity.this, CountdownActivity.class);
+
+
+
         final MediaPlayer mPlayerOcean = MediaPlayer.create(this, R.raw.oceansounds);
+
+        intentocean.putExtra("lol", mPlayerOcean + " ");
 
         volume_ocean = (Button) findViewById(R.id.ocean_volume);
         volume_ocean.setOnClickListener(new View.OnClickListener() {
