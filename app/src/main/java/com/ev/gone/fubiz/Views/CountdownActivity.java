@@ -110,8 +110,6 @@ public class CountdownActivity extends AppCompatActivity {
 
 
 
-
-
     private void startCountDownTimer() {
 
         smoothAnimation = ObjectAnimator.ofInt(progressBarCircle, "progress", progressBarCircle.getProgress(), progressBarCircle.getMax());
@@ -172,6 +170,6 @@ public class CountdownActivity extends AppCompatActivity {
     private void setTimerValues() {
         Intent intent = getIntent();
         // assigning values after converting to milliseconds
-        timeCountInMilliSeconds = intent.getLongExtra("minutes", 5) * 60 * 1000;
+        timeCountInMilliSeconds = intent.getLongExtra("minutes", 15) * 60 * 1000;
     }
 }

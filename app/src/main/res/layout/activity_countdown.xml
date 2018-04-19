@@ -87,7 +87,7 @@
             android:layout_width= "0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Setting"
+            android:text="Time"
             android:textSize="13dp"
             android:layout_gravity="center"
             android:textColor="@color/white"
